@@ -52,3 +52,63 @@
         }
     }
 }
+
+button.new-book-btn {
+    all: unset;
+    background: rgba(255, 255, 255, .7);
+    padding: 1em 2em;
+    margin: 1em 0;
+    cursor: pointer;
+    font-family: f.$font-stack-one;
+    font-size: 1.2rem;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.new-book-form {
+    width: min(100%, 350px);
+    background:rgba(0, 0, 0, .7);
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    color: c.$white;
+    input[type="text"], input[type="number"] {
+        width: 90%;
+        font-size: 1rem;
+        padding: .5rem;
+    }
+    input[type="checkbox"] {
+        background-color: #eee;
+        width: 25px;
+        height: 25px;
+        &:checked {
+            background-color: #2196f3;
+        }
+    }
+    input[type="submit"] {
+        font-size: 1.2rem;
+        padding: .2rem .5rem;
+        margin: 1em 0;
+    }
+    label {
+        font-family: f.$font-stack-one;
+        font-size: 1.3rem;
+        margin: .5em 0
+    }
+    .form-btns {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        .form-btn {
+            font-size: 1.2rem;
+            font-family: f.$font-stack-one;
+            padding: 1em;
+        }
+    }
+}
+.new-book-form.hide {
+    display:none;
+}

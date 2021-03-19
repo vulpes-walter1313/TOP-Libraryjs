@@ -60,4 +60,65 @@ h1, h2, h3, h4, h5, h6, p {
   font-family: "Arial", "Helvetica", sans-serif;
 }
 
+button.new-book-btn {
+  all: unset;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 1em 2em;
+  margin: 1em 0;
+  cursor: pointer;
+  font-family: "Arial", "Helvetica", sans-serif;
+  font-size: 1.2rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.new-book-form {
+  width: min(100%, 350px);
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  color: #f1f1f1;
+}
+.new-book-form input[type=text], .new-book-form input[type=number] {
+  width: 90%;
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+.new-book-form input[type=checkbox] {
+  background-color: #eee;
+  width: 25px;
+  height: 25px;
+}
+.new-book-form input[type=checkbox]:checked {
+  background-color: #2196f3;
+}
+.new-book-form input[type=submit] {
+  font-size: 1.2rem;
+  padding: 0.2rem 0.5rem;
+  margin: 1em 0;
+}
+.new-book-form label {
+  font-family: "Arial", "Helvetica", sans-serif;
+  font-size: 1.3rem;
+  margin: 0.5em 0;
+}
+.new-book-form .form-btns {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+.new-book-form .form-btns .form-btn {
+  font-size: 1.2rem;
+  font-family: "Arial", "Helvetica", sans-serif;
+  padding: 1em;
+}
+
+.new-book-form.hide {
+  display: none;
+}
+
 /*# sourceMappingURL=styles.css.map */

@@ -69,3 +69,8 @@ addBookToLibrary("Frankenstein", "Mary Shelly", 742, false);
 addBookToLibrary("Lord of the Flies", "William Golding", 775, false);
 
 populateShelf();
+const addBookForm = document.querySelector("#add-book-form");
+const newBookBtn = document.querySelector("#new-book");
+newBookBtn.addEventListener('click', ()=> {
+    addBookForm.classList.toggle("hide");
+});

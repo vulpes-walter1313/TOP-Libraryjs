@@ -3,6 +3,7 @@ const bookShelf = document.querySelector('.books-wrapper');
 const addBookBtn = document.querySelector('#add-book-btn');
 const cancelBookBtn = document.querySelector('#cancel-book-btn');
 let bookRemoveBtns = document.querySelectorAll(".inbook-remove-btn");
+let updateReadBtns = document.querySelectorAll(".inbook-read-btn");
 
 function Book(title="unavailable", author="unknown", numOfPages=0, readStatus=false) {
     // Constructor
@@ -11,6 +12,9 @@ function Book(title="unavailable", author="unknown", numOfPages=0, readStatus=fa
     this.numOfPages = numOfPages;
     this.readStatus = readStatus;
 }
+Book.prototype.toggleRead = function () {
+    this.readStatus = !this.readStatus;
+};
 
 function addBookToLibrary(title, author, numOfPages, readStatus) {
     let book = new Book(title, author, numOfPages, readStatus);
@@ -54,7 +58,7 @@ function populateShelf() {
         
         let bookReadElem = document.createElement('p');
         bookReadElem.classList.add('book-read');
-        bookReadElem.textContent = `Has been read? ${book.readStatus}`;
+        bookReadElem.textContent = `Has been read? ${book.readStatus ? 'True' : 'False'}`;
         // create a div that will house two buttons
         let btnDiv = document.createElement('div');
         let readBtn = document.createElement('button');
@@ -62,6 +66,8 @@ function populateShelf() {
         readBtn.classList.add("inbook-read-btn");
         readBtn.textContent = "Read?";
         readBtn.setAttribute("type", "button");
+        // this index data key will help update read status from book
+        readBtn.dataset.index = bookIndex;
         
         let removeBtn = document.createElement('button');
         removeBtn.classList.add("inbook-btn");
@@ -86,6 +92,8 @@ function populateShelf() {
     // event listeners for card removal
     bookRemoveBtns = document.querySelectorAll(".inbook-remove-btn");
     bookRemoveBtns.forEach( book => book.addEventListener('click', handleBookRemove));
+    updateReadBtns = document.querySelectorAll(".inbook-read-btn");
+    updateReadBtns.forEach( book => book.addEventListener('click', handleReadUpdate));
 }
 
 function handleBookAdd() {
@@ -109,8 +117,14 @@ function handleBookAdd() {
 }
 
 function handleBookRemove() {
-    console.log(this);
-    myLibrary.splice(this.dataset.index, 1);
+    // console.log(this);
+    myLibrary.splice(parseInt(this.dataset.index), 1);
+    populateShelf();
+}
+
+function handleReadUpdate() {
+    // console.log(this);
+    myLibrary[parseInt(this.dataset.index)].toggleRead();
     populateShelf();
 }
 

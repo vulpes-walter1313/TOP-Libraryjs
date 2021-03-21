@@ -128,6 +128,21 @@ function handleReadUpdate() {
     populateShelf();
 }
 
+function storeBooksToLocalStorage() {
+    let objs = [];
+    myLibrary.forEach( book => {
+        const obj = {
+            title: book.title,
+            author: book.author,
+            numOfPages: book.numOfPages,
+            readStatus: book.readStatus
+        }
+        objs.push(obj);
+    });
+    // console.log(JSON.stringify(objs));
+    localStorage.setItem("booklist", JSON.stringify(objs));
+}
+
 addBookToLibrary("Harry Potter 1", "J.K.Rowling", 825, true);
 addBookToLibrary("Harry Potter 2", "J.K.Rowling", 1125, true);
 // addBookToLibrary("Once Upon A Time", "Author", 9800, true);

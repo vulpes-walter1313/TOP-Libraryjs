@@ -59,6 +59,19 @@ h1, h2, h3, h4, h5, h6, p {
   font-size: 1.1rem;
   font-family: "Arial", "Helvetica", sans-serif;
 }
+.books-wrapper .book-card .inbook-btn {
+  all: unset;
+  padding: 0.5em 1em;
+  font-size: 1.2rem;
+  background: rgba(0, 0, 0, 0.7);
+  color: #f1f1f1;
+  margin: 0 0.3em;
+  cursor: pointer;
+  transition: all 1s;
+}
+.books-wrapper .book-card .inbook-btn:hover {
+  transform: scale(1.1);
+}
 
 button.new-book-btn {
   all: unset;
@@ -110,6 +123,7 @@ button.new-book-btn {
   width: 100%;
   display: flex;
   justify-content: space-evenly;
+  margin: 1em 0;
 }
 .new-book-form .form-btns .form-btn {
   font-size: 1.2rem;

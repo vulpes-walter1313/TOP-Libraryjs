@@ -50,6 +50,19 @@
             font-size: 1.1rem;
             font-family: f.$font-stack-one;
         }
+        .inbook-btn {
+            all: unset;
+            padding: .5em 1em;
+            font-size: 1.2rem;
+            background: rgba(0, 0, 0, 0.7);
+            color: c.$white;
+            margin: 0 .3em;
+            cursor: pointer;
+            transition: all 1s;
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
     }
 }
 
@@ -102,6 +115,7 @@ button.new-book-btn {
         width: 100%;
         display: flex;
         justify-content: space-evenly;
+        margin: 1em 0;
         .form-btn {
             font-size: 1.2rem;
             font-family: f.$font-stack-one;

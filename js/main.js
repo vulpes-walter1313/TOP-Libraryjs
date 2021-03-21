@@ -1,4 +1,5 @@
 let myLibrary = [];
+getFromLocalStorage();
 const bookShelf = document.querySelector('.books-wrapper');
 const addBookBtn = document.querySelector('#add-book-btn');
 const cancelBookBtn = document.querySelector('#cancel-book-btn');
@@ -20,6 +21,7 @@ function addBookToLibrary(title, author, numOfPages, readStatus) {
     let book = new Book(title, author, numOfPages, readStatus);
     book.prototype = Object.create(Book.prototype);
     myLibrary.push(book);
+    storeBooksToLocalStorage();
 }
 function formatLongNums(num) {
     let arr = String(num).split("");
@@ -120,12 +122,14 @@ function handleBookRemove() {
     // console.log(this);
     myLibrary.splice(parseInt(this.dataset.index), 1);
     populateShelf();
+    storeBooksToLocalStorage();
 }
 
 function handleReadUpdate() {
     // console.log(this);
     myLibrary[parseInt(this.dataset.index)].toggleRead();
     populateShelf();
+    storeBooksToLocalStorage();
 }
 
 function storeBooksToLocalStorage() {
@@ -143,13 +147,21 @@ function storeBooksToLocalStorage() {
     localStorage.setItem("booklist", JSON.stringify(objs));
 }
 
-addBookToLibrary("Harry Potter 1", "J.K.Rowling", 825, true);
-addBookToLibrary("Harry Potter 2", "J.K.Rowling", 1125, true);
-// addBookToLibrary("Once Upon A Time", "Author", 9800, true);
-// addBookToLibrary("Frankenstein", "Mary Shelly", 742, false);
-// addBookToLibrary("Lord of the Flies", "William Golding", 775, false);
-// addBookToLibrary("Frankenstein", "Mary Shelly", 742, false);
-// addBookToLibrary("Lord of the Flies", "William Golding", 775, false);
+function getFromLocalStorage() {
+    let myBooksJson = localStorage.getItem("booklist");
+    if (myBooksJson == null) {
+        myLibrary = [];
+    }
+    else {
+        let myBookObjs = JSON.parse(myBooksJson);
+        myBookObjs.forEach( book=> {
+         let {title, author, numOfPages, readStatus} = book;
+        //  console.log(title, author, numOfPages, readStatus);
+         addBookToLibrary(title, author, numOfPages, readStatus);
+        });
+    }
+}
+
 
 populateShelf();
 // Add book popup form

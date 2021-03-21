@@ -2,6 +2,7 @@ let myLibrary = [];
 const bookShelf = document.querySelector('.books-wrapper');
 const addBookBtn = document.querySelector('#add-book-btn');
 const cancelBookBtn = document.querySelector('#cancel-book-btn');
+let bookRemoveBtns = document.querySelectorAll(".inbook-remove-btn");
 
 function Book(title="unavailable", author="unknown", numOfPages=0, readStatus=false) {
     // Constructor
@@ -38,9 +39,7 @@ function populateShelf() {
     myLibrary.forEach(book => {
         let card = document.createElement('div');
         card.classList.add('book-card');
-        // this index data key will help remove books from myLibrary later
-        card.dataset.index = bookIndex;
-
+        
         let bookTitleElem = document.createElement('p');
         bookTitleElem.classList.add('book-title');
         bookTitleElem.textContent = book.title;
@@ -48,7 +47,7 @@ function populateShelf() {
         let bookAuthorElem = document.createElement('p');
         bookAuthorElem.classList.add('book-author');
         bookAuthorElem.textContent = `by ${book.author}`;
-
+        
         let bookPagesElem = document.createElement('p');
         bookPagesElem.classList.add('book-pages');
         bookPagesElem.textContent = `Total Pages: ${formatLongNums(book.numOfPages)}`;
@@ -69,6 +68,8 @@ function populateShelf() {
         removeBtn.classList.add("inbook-remove-btn");
         removeBtn.textContent = "Remove";
         removeBtn.setAttribute("type", "button");
+        // this index data key will help remove books from myLibrary later
+        removeBtn.dataset.index = bookIndex;
 
         btnDiv.appendChild(readBtn);
         btnDiv.appendChild(removeBtn);
@@ -82,6 +83,9 @@ function populateShelf() {
         bookShelf.appendChild(card);
         bookIndex++;
     });
+    // event listeners for card removal
+    bookRemoveBtns = document.querySelectorAll(".inbook-remove-btn");
+    bookRemoveBtns.forEach( book => book.addEventListener('click', handleBookRemove));
 }
 
 function handleBookAdd() {
@@ -103,6 +107,13 @@ function handleBookAdd() {
     readBtn.checked = false;
     populateShelf();
 }
+
+function handleBookRemove() {
+    console.log(this);
+    myLibrary.splice(this.dataset.index, 1);
+    populateShelf();
+}
+
 addBookToLibrary("Harry Potter 1", "J.K.Rowling", 825, true);
 addBookToLibrary("Harry Potter 2", "J.K.Rowling", 1125, true);
 // addBookToLibrary("Once Upon A Time", "Author", 9800, true);

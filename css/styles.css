@@ -29,23 +29,35 @@ h1, h2, h3, h4, h5, h6, p {
 }
 .hero h1 {
   font-family: "Arial", "Helvetica", sans-serif;
-  color: #f1f1f1;
+  color: #f7f7ff;
   font-size: clamp(2rem, 15vh, 5rem);
+  margin: 3rem 0 1.5rem;
+  text-align: center;
 }
 
 .books-wrapper {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: #6a3c20;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
   width: min(100%, 900px);
   display: flex;
   flex-wrap: wrap;
 }
 .books-wrapper .book-card {
-  border: 2px solid #1c1c1c;
+  background: #3e211c;
+  background: -moz-linear-gradient(90deg, #3e211c 0%, #aa4334 50%, #3e211c 100%);
+  background: -webkit-linear-gradient(90deg, #3e211c 0%, #aa4334 50%, #3e211c 100%);
+  background: linear-gradient(90deg, #3e211c 0%, #aa4334 50%, #3e211c 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#3e211c",endColorstr="#3e211c",GradientType=1);
+  border: 2px solid #e8c053;
+  color: #e8c053;
   flex: 1 0 250px;
   padding: 0.5rem;
   margin: 1em;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
   text-align: center;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
 }
 .books-wrapper .book-card .book-title {
   font-size: 2rem;
@@ -53,7 +65,7 @@ h1, h2, h3, h4, h5, h6, p {
 }
 .books-wrapper .book-card .book-author {
   font-size: 1.5rem;
-  font-family: "Georgia", "Garamond", serif;
+  font-family: "Arial", "Helvetica", sans-serif;
 }
 .books-wrapper .book-card .book-pages, .books-wrapper .book-card .book-read {
   font-size: 1.1rem;
@@ -63,19 +75,24 @@ h1, h2, h3, h4, h5, h6, p {
   all: unset;
   padding: 0.5em 1em;
   font-size: 1.2rem;
-  background: rgba(0, 0, 0, 0.7);
-  color: #f1f1f1;
+  background: #262626;
+  color: #e8c053;
   margin: 0 0.3em;
   cursor: pointer;
   transition: all 1s;
 }
 .books-wrapper .book-card .inbook-btn:hover {
-  transform: scale(1.1);
+  transform: scale(0.9);
+}
+.books-wrapper .book-card div {
+  margin: 1em 0;
 }
 
 button.new-book-btn {
   all: unset;
-  background: rgba(255, 255, 255, 0.7);
+  background: #262626;
+  color: #f7f7ff;
+  border: 2px solid #e8c053;
   padding: 1em 2em;
   margin: 1em 0;
   cursor: pointer;
@@ -86,7 +103,11 @@ button.new-book-btn {
 
 .new-book-form {
   width: min(100%, 350px);
-  background: rgba(0, 0, 0, 0.7);
+  background: #3e211c;
+  background: -moz-linear-gradient(90deg, #3e211c 0%, #aa4334 50%, #3e211c 100%);
+  background: -webkit-linear-gradient(90deg, #3e211c 0%, #aa4334 50%, #3e211c 100%);
+  background: linear-gradient(90deg, #3e211c 0%, #aa4334 50%, #3e211c 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#3e211c",endColorstr="#3e211c",GradientType=1);
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -94,7 +115,8 @@ button.new-book-btn {
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
-  color: #f1f1f1;
+  color: #e8c053;
+  border: 2px solid #e8c053;
 }
 .new-book-form input[type=text], .new-book-form input[type=number] {
   width: 90%;

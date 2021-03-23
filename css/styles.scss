@@ -23,28 +23,41 @@
         font-family: f.$font-stack-one;
         color: c.$white;
         font-size: clamp(2rem, 15vh, 5rem);
-        
+        margin: 3rem 0 1.5rem;
+        text-align: center;
     }
 }
 .books-wrapper {
-    background-color: rgba(255, 255, 255, .7);
+    background-color: c.$brown;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
     width: min(100%, 900px);
     display: flex;
     flex-wrap: wrap;
     .book-card {
-        border: 2px solid c.$black;
+        // background-color: c.$book;
+        background: rgb(62,33,28);
+        background: -moz-linear-gradient(90deg, rgba(62,33,28,1) 0%, rgba(170,67,52,1) 50%, rgba(62,33,28,1) 100%);
+        background: -webkit-linear-gradient(90deg, rgba(62,33,28,1) 0%, rgba(170,67,52,1) 50%, rgba(62,33,28,1) 100%);
+        background: linear-gradient(90deg, rgba(62,33,28,1) 0%, rgba(170,67,52,1) 50%, rgba(62,33,28,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#3e211c",endColorstr="#3e211c",GradientType=1);
+        
+        border: 2px solid c.$yellow;
+        color: c.$yellow;
         flex: 1 0 250px;
         padding: .5rem;
         margin: 1em;
-        box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
         text-align: center;
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
         .book-title {
             font-size: 2rem;
             font-family: f.$font-stack-one;
         }
         .book-author {
             font-size: 1.5rem;
-            font-family: f.$font-stack-two;
+            font-family: f.$font-stack-one;
         }
         .book-pages, .book-read {
             font-size: 1.1rem;
@@ -54,21 +67,26 @@
             all: unset;
             padding: .5em 1em;
             font-size: 1.2rem;
-            background: rgba(0, 0, 0, 0.7);
-            color: c.$white;
+            background: c.$black;
+            color: c.$yellow;
             margin: 0 .3em;
             cursor: pointer;
             transition: all 1s;
             &:hover {
-                transform: scale(1.1);
+                transform: scale(.9);
             }
+        }
+        div {
+            margin: 1em 0;
         }
     }
 }
 
 button.new-book-btn {
     all: unset;
-    background: rgba(255, 255, 255, .7);
+    background: c.$black;
+    color: c.$white;
+    border: 2px solid c.$yellow;
     padding: 1em 2em;
     margin: 1em 0;
     cursor: pointer;
@@ -79,7 +97,13 @@ button.new-book-btn {
 
 .new-book-form {
     width: min(100%, 350px);
-    background:rgba(0, 0, 0, .7);
+    // background:c.$book;
+    background: rgb(62,33,28);
+    background: -moz-linear-gradient(90deg, rgba(62,33,28,1) 0%, rgba(170,67,52,1) 50%, rgba(62,33,28,1) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(62,33,28,1) 0%, rgba(170,67,52,1) 50%, rgba(62,33,28,1) 100%);
+    background: linear-gradient(90deg, rgba(62,33,28,1) 0%, rgba(170,67,52,1) 50%, rgba(62,33,28,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#3e211c",endColorstr="#3e211c",GradientType=1);
+
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -87,7 +111,8 @@ button.new-book-btn {
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
-    color: c.$white;
+    color: c.$yellow;
+    border: 2px solid c.$yellow;
     input[type="text"], input[type="number"] {
         width: 90%;
         font-size: 1rem;

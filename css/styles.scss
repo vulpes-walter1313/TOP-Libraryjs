@@ -142,6 +142,12 @@ button.new-book-btn {
         justify-content: space-evenly;
         margin: 1em 0;
         .form-btn {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border-style: none;
+            background-color: c.$black;
+            color: c.$yellow;
             font-size: 1.2rem;
             font-family: f.$font-stack-one;
             padding: 1em;

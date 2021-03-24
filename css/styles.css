@@ -1,15 +1,7 @@
-/*
-* Prefixed by https://autoprefixer.github.io
-* PostCSS: v7.0.29,
-* Autoprefixer: v9.7.6
-* Browsers: last 4 version
-*/
-
 body, html {
   margin: 0;
   padding: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 h1, h2, h3, h4, h5, h6, p {
@@ -31,16 +23,9 @@ h1, h2, h3, h4, h5, h6, p {
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: column;
-          flex-flow: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-flow: column;
+  align-items: center;
 }
 .hero h1 {
   font-family: "Arial", "Helvetica", sans-serif;
@@ -52,41 +37,27 @@ h1, h2, h3, h4, h5, h6, p {
 
 .books-wrapper {
   background-color: #6a3c20;
-  -webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
-          box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
   width: min(100%, 900px);
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 .books-wrapper .book-card {
   background: #3e211c;
-  background: -webkit-gradient(linear, left top, right top, from(#3e211c), color-stop(50%, #aa4334), to(#3e211c));
-  background: -o-linear-gradient(left, #3e211c 0%, #aa4334 50%, #3e211c 100%);
+  background: -moz-linear-gradient(90deg, #3e211c 0%, #aa4334 50%, #3e211c 100%);
+  background: -webkit-linear-gradient(90deg, #3e211c 0%, #aa4334 50%, #3e211c 100%);
   background: linear-gradient(90deg, #3e211c 0%, #aa4334 50%, #3e211c 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#3e211c",endColorstr="#3e211c",GradientType=1);
   border: 2px solid #e8c053;
   color: #e8c053;
-  -webkit-box-flex: 1;
-      -ms-flex: 1 0 250px;
-          flex: 1 0 250px;
+  flex: 1 0 250px;
   padding: 0.5rem;
   margin: 1em;
-  -webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
-          box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
   text-align: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: column;
-          flex-flow: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  flex-flow: column;
+  justify-content: center;
 }
 .books-wrapper .book-card .book-title {
   font-size: 2rem;
@@ -108,14 +79,10 @@ h1, h2, h3, h4, h5, h6, p {
   color: #e8c053;
   margin: 0 0.3em;
   cursor: pointer;
-  -webkit-transition: all 1s;
-  -o-transition: all 1s;
   transition: all 1s;
 }
 .books-wrapper .book-card .inbook-btn:hover {
-  -webkit-transform: scale(0.9);
-      -ms-transform: scale(0.9);
-          transform: scale(0.9);
+  transform: scale(0.9);
 }
 .books-wrapper .book-card div {
   margin: 1em 0;
@@ -131,33 +98,23 @@ button.new-book-btn {
   cursor: pointer;
   font-family: "Arial", "Helvetica", sans-serif;
   font-size: 1.2rem;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-          box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 .new-book-form {
   width: min(100%, 350px);
   background: #3e211c;
-  background: -webkit-gradient(linear, left top, right top, from(#3e211c), color-stop(50%, #aa4334), to(#3e211c));
-  background: -o-linear-gradient(left, #3e211c 0%, #aa4334 50%, #3e211c 100%);
+  background: -moz-linear-gradient(90deg, #3e211c 0%, #aa4334 50%, #3e211c 100%);
+  background: -webkit-linear-gradient(90deg, #3e211c 0%, #aa4334 50%, #3e211c 100%);
   background: linear-gradient(90deg, #3e211c 0%, #aa4334 50%, #3e211c 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#3e211c",endColorstr="#3e211c",GradientType=1);
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: column;
-          flex-flow: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-flow: column;
+  align-items: center;
   position: absolute;
   top: 50%;
   left: 50%;
-  -webkit-transform: translateX(-50%) translateY(-50%);
-      -ms-transform: translateX(-50%) translateY(-50%);
-          transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
   color: #e8c053;
   border: 2px solid #e8c053;
 }
@@ -186,15 +143,17 @@ button.new-book-btn {
 }
 .new-book-form .form-btns {
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  justify-content: space-evenly;
   margin: 1em 0;
 }
 .new-book-form .form-btns .form-btn {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-style: none;
+  background-color: #262626;
+  color: #e8c053;
   font-size: 1.2rem;
   font-family: "Arial", "Helvetica", sans-serif;
   padding: 1em;
@@ -203,3 +162,5 @@ button.new-book-btn {
 .new-book-form.hide {
   display: none;
 }
+
+/*# sourceMappingURL=styles.css.map */

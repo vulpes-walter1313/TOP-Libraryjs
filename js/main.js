@@ -168,7 +168,7 @@ populateShelf();
 const addBookForm = document.querySelector("#add-book-form");
 const newBookBtn = document.querySelector("#new-book");
 newBookBtn.addEventListener('click', ()=> {
-    addBookForm.style.top = `${(window.screen.height / 2) + window.scrollY}px`;
+    addBookForm.style.top = `${(window.visualViewport.height / 2) + window.scrollY}px`;
     addBookForm.classList.remove("hide");
 });
 

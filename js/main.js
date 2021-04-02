@@ -6,23 +6,26 @@ const cancelBookBtn = document.querySelector('#cancel-book-btn');
 let bookRemoveBtns = document.querySelectorAll(".inbook-remove-btn");
 let updateReadBtns = document.querySelectorAll(".inbook-read-btn");
 
-function Book(title="unavailable", author="unknown", numOfPages=0, readStatus=false) {
-    // Constructor
-    this.title = title;
-    this.author = author;
-    this.numOfPages = numOfPages;
-    this.readStatus = readStatus;
-}
-Book.prototype.toggleRead = function () {
-    this.readStatus = !this.readStatus;
-};
-
+        
 function addBookToLibrary(title, author, numOfPages, readStatus) {
+    class Book {
+        constructor(title="unavailable", author="unknown", numOfPages=0, readStatus=false) {
+            this.title = title;
+            this.author = author;
+            this.numOfPages = numOfPages;
+            this.readStatus = readStatus;
+        }
+        
+        toggleRead() {
+            this.readStatus = !this.readStatus;
+        }
+    }
     let book = new Book(title, author, numOfPages, readStatus);
-    book.prototype = Object.create(Book.prototype);
+    // book.prototype = Object.create(Book.prototype);
     myLibrary.push(book);
     storeBooksToLocalStorage();
 }
+
 function formatLongNums(num) {
     let arr = String(num).split("");
     let fmtarr = [];
@@ -113,7 +116,7 @@ function handleBookAdd() {
     // reset the values of all inputs for next submission
     titleBtn.value = "";
     authorBtn.value = "";
-    pagesBtn.value = NaN;
+    pagesBtn.valueAsNumber = NaN;
     readBtn.checked = false;
     populateShelf();
 }

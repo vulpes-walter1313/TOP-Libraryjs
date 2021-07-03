@@ -10,48 +10,17 @@ export default class MakeBookComponent {
   render() {
     let card = document.createElement('div');
     card.classList.add('book-card');
-    
-    let bookTitleElem = document.createElement('p');
-    bookTitleElem.classList.add('book-title');
-    bookTitleElem.textContent = this.title;
-    
-    let bookAuthorElem = document.createElement('p');
-    bookAuthorElem.classList.add('book-author');
-    bookAuthorElem.textContent = `by ${this.author}`;
-    
-    let bookPagesElem = document.createElement('p');
-    bookPagesElem.classList.add('book-pages');
-    bookPagesElem.textContent = `Total Pages: ${Controller.formatLongNums(this.pages)}`;
-    
-    let bookReadElem = document.createElement('p');
-    bookReadElem.classList.add('book-read');
-    bookReadElem.textContent = `Has been read? ${this.read ? 'True' : 'False'}`;
-    // create a div that will house two buttons
-    let btnDiv = document.createElement('div');
-    let readBtn = document.createElement('button');
-    readBtn.classList.add("inbook-btn");
-    readBtn.classList.add("inbook-read-btn");
-    readBtn.textContent = "Read?";
-    readBtn.setAttribute("type", "button");
-    // this index data key will help update read status from book
-    readBtn.dataset.index = this.index;
-    
-    let removeBtn = document.createElement('button');
-    removeBtn.classList.add("inbook-btn");
-    removeBtn.classList.add("inbook-remove-btn");
-    removeBtn.textContent = "Remove";
-    removeBtn.setAttribute("type", "button");
-    // this index data key will help remove books from myLibrary later
-    removeBtn.dataset.index = this.index;
+    card.innerHTML = `
+      <p class="book-title">${this.title}</p>
+      <p class="book-author">${this.author}</p>
+      <p class="book-pages">Total Pages: ${Controller.formatLongNums(this.pages)}</p>
+      <p class="book-read">Has been read: ${this.read}</p>
+      <div>
+        <button class="inbook-btn inbook-read-btn" type="button" data-index="${this.index}">Read?</button>
+        <button class="inbook-btn inbook-remove-btn" type="button" data-index="${this.index}">Remove</button>
+      </div>
+    `;
 
-    btnDiv.appendChild(readBtn);
-    btnDiv.appendChild(removeBtn);
-
-    card.appendChild(bookTitleElem);
-    card.appendChild(bookAuthorElem);
-    card.appendChild(bookPagesElem);
-    card.appendChild(bookReadElem);
-    card.appendChild(btnDiv);
     return card;
   }
 }

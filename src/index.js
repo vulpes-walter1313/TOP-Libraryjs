@@ -20,7 +20,8 @@ cancelBookBtn.addEventListener('click', () => addBookForm.classList.add('hide'))
 
 // Add book to book list from form
 const addBookBtn = document.querySelector('#add-book-btn');
-addBookBtn.addEventListener('click', () => {
+addBookBtn.addEventListener('click', (e) => {
+  e.preventDefault();
   controller.handleBookAdd();
   addBookForm.classList.add('hide');
 });

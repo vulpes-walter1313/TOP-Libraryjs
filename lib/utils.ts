@@ -1,16 +1,8 @@
-export function formatLongNums(num: number) {
+export function formatLongNums(num: number): string {
   // formats a number like 1000000 to a string like 1,000,000
-  let arr = String(num).split("");
-  let fmtarr: string[] = [];
-  while (arr.length != 0) {
-    for (let i = 0; i < 3; i++) {
-      if (arr) {
-        fmtarr.push((arr.pop() as string)?.toString())
-      }
-    }
-    if (arr.length != 0) {
-      fmtarr.push(',');
-    }
-  }
-  return fmtarr.reverse().join('');
+  return Array.from(num.toString())
+    .reverse()
+    .map((letter, index) => (index + 1) % 3 === 0 ? `,${letter}` : letter)
+    .reverse()
+    .join("");
 }

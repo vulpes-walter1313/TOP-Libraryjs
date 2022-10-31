@@ -1,0 +1,18 @@
+.formItem {
+  padding: 1rem;
+  display: flex;
+  flex-flow: column;
+  width: 32em;
+}
+
+.error {
+  color: white;
+  background-color: #F04841;
+  padding: .5rem;
+  margin: .5rem 0;
+  font-family: sans-serif;
+}
+
+.title {
+  font-size: 2rem;
+}

@@ -4,6 +4,6 @@
   box-sizing: border-box;
 }
 
-body {
-  padding: 1.5em;
+:root {
+  --black: #1a181b;
 }

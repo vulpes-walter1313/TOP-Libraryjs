@@ -19,9 +19,11 @@ export default function LoginForms() {
     console.log(data);
   }
   return (
-    <div>
-      <button onClick={signInWithGoogle}>Login with Google</button>
-      <form onSubmit={handleSubmit(submitData)}>
+    <div className={styles.mainContainer}>
+      <button className={styles.googleBtn} onClick={signInWithGoogle}>
+        <img  src="/google.png" style={{width: '40px', height: '40px'}}/>
+        Login with Google</button>
+      <form className={styles.form} onSubmit={handleSubmit(submitData)}>
         <p className={styles.title}>Log in with Email and Password</p>
         <div className={styles.formItem}>
           <label htmlFor="email">Email:</label>

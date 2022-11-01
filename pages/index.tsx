@@ -9,11 +9,11 @@ import { signOut } from "firebase/auth";
 export default function Home() {
   const { user } = useContext(UserContext);
   return (
-    <main className="homepage-main">
+    <main className={styles.homepageMain}>
       <Head>
         <title>Library App</title>
       </Head>
-      <h1>Welcome To Your Digital Library Index</h1>
+      <h1>Welcome To Your Library</h1>
       {user ? (
         <button
           onClick={() => {
@@ -25,7 +25,7 @@ export default function Home() {
         </button>
       ) : (
         <>
-          <p>Log in to get started!</p>
+          <p>Login to keep track of your reading!</p>
           <LoginForms />
         </>
       )}

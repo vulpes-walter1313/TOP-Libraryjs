@@ -1,0 +1,14 @@
+.navbarContainer {
+  display: flex;
+  flex-flow: row;
+  height: 3rem;
+  align-items: center;
+  background-color: var(--black);
+  color: white;
+  padding: 0 2rem;
+}
+.title {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+}

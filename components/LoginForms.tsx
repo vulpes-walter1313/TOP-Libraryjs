@@ -1,7 +1,9 @@
 import { signInWithPopup } from "firebase/auth";
+import { useRouter } from "next/router";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { auth, googleAuthProvider } from "../lib/firebase";
+import ErrorMessage from "./ErrorMessage";
 import styles from "./LoginForms.module.css";
 import RegisterAccount from "./RegisterAccount";
 
@@ -11,9 +13,11 @@ import RegisterAccount from "./RegisterAccount";
 }
 export default function LoginForms() {
   const {register, handleSubmit, formState: { errors }} = useForm<LoginFormInput>();
+  const router = useRouter();
 
   async function signInWithGoogle() {
     await signInWithPopup(auth, googleAuthProvider);
+    router.push("/library")
   }
   function submitData(data: LoginFormInput) {
     console.log(data);
@@ -28,16 +32,16 @@ export default function LoginForms() {
         <div className={styles.formItem}>
           <label htmlFor="email">Email:</label>
           <input {...register("email", { required: true, pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i })} id="email"/>
-          {errors.email?.type === "required" && <p className={styles.error}>Email is required!</p>}
-          {errors.email?.type === "pattern" && <p className={styles.error}>Provide a valid email</p>}
+          {errors.email?.type === "required" && <ErrorMessage>Email is required!</ErrorMessage>}
+          {errors.email?.type === "pattern" && <ErrorMessage>Provide a valid email</ErrorMessage>}
         </div>
         <div className={styles.formItem}>
           <label htmlFor="password">Password:</label>
           <input type="password" id="password" {...register("password", {minLength: 3, maxLength: 25 })}/>
-          {errors.password?.type === "minLength" && <p className={styles.error}>The password is too small</p>}
-          {errors.password?.type === "maxLength" && <p className={styles.error}>The password is too long</p>}
+          {errors.password?.type === "minLength" && <ErrorMessage>The password is too small</ErrorMessage>}
+          {errors.password?.type === "maxLength" && <ErrorMessage>The password is too long</ErrorMessage>}
         </div>
-        <input type="submit"/>
+        <input className={styles.submitBtn} type="submit"/>
       </form>
       <RegisterAccount />
     </div>

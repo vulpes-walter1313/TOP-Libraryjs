@@ -6,17 +6,24 @@
   gap: 2rem;
 }
 .formItem {
-  padding: 1rem;
+  padding: 1rem 0;
   display: flex;
   flex-flow: column;
-  width: 32em;
+  width: 100%;
 }
 .formItem input {
   width: 100%;
+  font-size: 1rem;
+  padding: .25rem .5rem;
 }
 .form {
   background-color: var(--white);
   padding: 2rem;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  gap: 1rem;
+  width: min(80vw, 32em);
 }
 
 .error {
@@ -37,7 +44,21 @@
   font-size: 1rem;
   gap: 1rem;
 }
+.googleBtn:hover {
+  cursor: pointer;
+}
+
+.submitBtn {
+  background-color: var(--black);
+  border-style: none;
+  color: var(--white);
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+}
 
 .title {
   font-size: 2rem;
+  text-align: center;
 }

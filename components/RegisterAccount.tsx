@@ -11,7 +11,7 @@ export default function RegisterAccount() {
     console.log(data);
   }
 return (
-    <form onSubmit={handleSubmit(submitData)}>
+    <form onSubmit={handleSubmit(submitData)} className={styles.form}>
       <p className={styles.title}>Create an Account:</p>
       <div className={styles.formItem}>
         <label htmlFor="email">Email:</label>
@@ -22,10 +22,10 @@ return (
       <div className={styles.formItem}>
         <label htmlFor="password">Password:</label>
         <input type="password" id="password" {...register("password", {minLength: 3, maxLength: 25 })}/>
-        {errors.password?.type === "minLength" && <p className={styles.error}>The password is too small</p>}
-        {errors.password?.type === "maxLength" && <p className={styles.error}>The password is too long</p>}
+        {errors.password?.type === "minLength" && <ErrorMessage>The password is too small</ErrorMessage>}
+        {errors.password?.type === "maxLength" && <ErrorMessage>The password is too long</ErrorMessage>}
       </div>
-      <input type="submit"/>
+      <input className={styles.submitBtn} type="submit"/>
     </form>
   )
 }

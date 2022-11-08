@@ -1,0 +1,31 @@
+.mainContainer {
+  background-color: var(--main);
+  width: 100%;
+  height: calc(100vh - 3rem);
+}
+
+.displayContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 80vw;
+  margin: 0 auto;
+}
+.displayContainer ul li:hover {
+  cursor: pointer;
+}
+.displayContainer ul {
+  list-style: none;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: .5rem;
+}
+.listItem {
+  background-color: var(--off-white);
+  padding: .5rem;
+}
+.selectedContainer {
+  background-color: var(--off-white);
+}
+.selectedTitle {
+  font-size: 1.5rem;
+}

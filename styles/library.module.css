@@ -1,0 +1,40 @@
+.addBookBtn {
+  border-style: none; 
+  font-size: 2rem;
+  padding: .5rem;
+  border-radius: 50%;
+  display: flex;
+  background-color: var(--black);
+  cursor: pointer;
+  position: fixed;
+  bottom: 10%;
+  left: 10%;
+}
+.addBookBtn svg {
+  color: var(--accent-1);
+}
+
+.addBookFormContainer {
+  background-color: rgba(26,24,27,.28);
+  position: fixed;
+  width: 100vw;
+  height: calc(100vh - 3rem);
+  top: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.addBookFormContainer form {
+  display: flex;
+  flex-flow: column;
+  
+  width: min(80vw, 30rem);
+  margin: 0 auto;
+  background-color: var(--black);
+  padding: 1rem;
+  color: var(--off-white);
+}
+.addBookFormContainer form input {
+  font-size: 1rem;
+  padding: .5rem;
+}

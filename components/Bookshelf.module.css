@@ -5,8 +5,9 @@
 }
 
 .displayContainer {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
   width: 80vw;
   margin: 0 auto;
 }

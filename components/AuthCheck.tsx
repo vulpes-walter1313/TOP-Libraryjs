@@ -4,7 +4,6 @@ import { UserContext } from '../lib/UserContext'
 
 export default function AuthCheck(props: any) {
   const { user } = useContext(UserContext);
-  console.log("In AuthCheck", user);
   if (user) {
     return props.children;
   } else {

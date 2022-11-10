@@ -6,7 +6,7 @@ import { firestore } from '../lib/firebase';
 import { User } from 'firebase/auth';
 import styles from "./Bookshelf.module.css";
 
-export default function Bookshelf() {
+export default React.memo(function Bookshelf() {
   const {user} = useContext(UserContext);
   const [values, loading, error] = useCollectionData(collection(firestore, 'users', (user as User).uid, 'books'));
   const [selectedBook, setSelectedBook] = useState<DocumentData | undefined>();
@@ -39,4 +39,4 @@ export default function Bookshelf() {
       </div>
     </main>
   )
-}
+})

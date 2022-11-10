@@ -19,7 +19,15 @@ interface AddBookFormInput {
 export default function LibraryPage() {
   const {user} = useContext(UserContext);
   const [showAddBook, setShowAddBook] = useState(true);
-  const {register, handleSubmit, formState: { errors, isSubmitSuccessful }, reset} = useForm<AddBookFormInput>()
+  const {register, handleSubmit, formState: { errors, isSubmitSuccessful }, reset}
+    = useForm<AddBookFormInput>({
+      defaultValues: {
+        title: "",
+        author: "",
+        pages: 0,
+        read: false
+      }
+    })
 
   const submitHandle = async (data: AddBookFormInput) => {
     const docRef = await doc(collection(firestore, "users", (user as User).uid, 'books'))

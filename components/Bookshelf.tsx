@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { UserContext } from '../lib/UserContext';
 import { useCollectionData} from "react-firebase-hooks/firestore";
-import { collection, DocumentData } from 'firebase/firestore';
+import { collection, deleteDoc, doc, DocumentData } from 'firebase/firestore';
 import { firestore } from '../lib/firebase';
-import { User, UserCredential } from 'firebase/auth';
+import { User } from 'firebase/auth';
 import styles from "./Bookshelf.module.css";
 
 export default function Bookshelf() {
@@ -21,11 +21,20 @@ export default function Bookshelf() {
           {values ? values.map(val => <li className={styles.listItem} key={val.id} onClick={() => setSelectedBook(val)}>Title: {val.title}. Author: {val.author}</li>) : null}
         </ul>
         <div className={styles.selectedContainer}>
-          <p className={styles.selectedTitle}>{selectedBook?.title}</p>
-          <p>by {selectedBook?.author}</p>
-          <p>Pages: {selectedBook?.pages}</p>
-          <p>Read: {selectedBook?.read.toString()}</p>
-          <button type='button'>remove</button>
+          {selectedBook ? (
+          <>
+            <p className={styles.selectedTitle}>{selectedBook?.title}</p>
+            <p>by {selectedBook?.author}</p>
+            <p>Pages: {selectedBook?.pages}</p>
+            <p>Read: {selectedBook?.read.toString()}</p>
+            <button type='button' onClick={ async () => {
+              if (selectedBook) {
+                await deleteDoc(doc(firestore, "users", (user as User).uid, "books", selectedBook.id))
+                setSelectedBook(undefined);
+              }
+            }}>remove</button>
+          </>
+          ) : <p>please select a book</p>}
         </div>
       </div>
     </main>

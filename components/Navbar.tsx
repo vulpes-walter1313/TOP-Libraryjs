@@ -8,6 +8,11 @@ import React from 'react';
       <Link href="/">
         <p className={styles.title}>Library App</p>
       </Link>
+      <ul className={styles.navlinks}>
+        <Link href="/library">
+          <li>Library</li>
+        </Link>
+      </ul>
      </nav>
    )
  }

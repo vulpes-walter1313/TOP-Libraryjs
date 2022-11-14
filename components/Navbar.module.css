@@ -1,6 +1,7 @@
 .navbarContainer {
   display: flex;
   flex-flow: row;
+  justify-content: space-between;
   height: 3rem;
   align-items: center;
   background-color: var(--black);
@@ -11,4 +12,14 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 1.125rem;
   font-weight: 700;
+  color: var(--white);
+}
+.navlinks {
+  list-style: none;
+}
+.navbarContainer a {
+  text-decoration: none;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 600;
+  color: var(--white);
 }

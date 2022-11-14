@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "../lib/UserContext";
 import { useCollectionData } from "react-firebase-hooks/firestore";
-import { collection, deleteDoc, doc, DocumentData } from "firebase/firestore";
+import { collection, deleteDoc, doc, DocumentData, serverTimestamp, updateDoc } from "firebase/firestore";
 import { firestore } from "../lib/firebase";
 import { User } from "firebase/auth";
 import styles from "./Bookshelf.module.css";
@@ -41,10 +41,22 @@ export default React.memo(function Bookshelf() {
         <div className={styles.selectedContainer}>
           {selectedBook ? (
             <>
-              <p className={styles.selectedTitle}>{selectedBook?.title}</p>
-              <p className={styles.selectedAuthor}>by {selectedBook?.author}</p>
-              <p>Pages: {selectedBook?.pages}</p>
-              <p>Read: {selectedBook?.read.toString()}</p>
+              <p className={styles.selectedTitle}>{selectedBook.title}</p>
+              <p className={styles.selectedAuthor}>by {selectedBook.author}</p>
+              <p>Pages: {Intl.NumberFormat('en-US').format(selectedBook.pages)}</p>
+              <label htmlFor="selected-read">Read:</label>
+              <input
+                id="selected-read"
+                type="checkbox"
+                checked={selectedBook.read}
+                onChange={ async (e) => {
+                  selectedBook.read = !selectedBook.read;
+                  await updateDoc(doc(firestore, "users", (user as User).uid, "books", selectedBook.id), {
+                    read: selectedBook.read,
+                    updatedAt: serverTimestamp()
+                  });
+                  console.log("Selected Book Checked input: ", selectedBook.read);
+                }}/>
               <button
                 type="button"
                 onClick={async () => {

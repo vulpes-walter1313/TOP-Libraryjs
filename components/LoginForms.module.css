@@ -47,6 +47,16 @@
 .googleBtn:hover {
   cursor: pointer;
 }
+.wantToRegisterBtn {
+  padding: .5rem 2rem;
+  background-color: #f5f5f5;
+  border-style: none;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+.wantToRegisterBtn:hover {
+  cursor: pointer;
+}
 
 .submitBtn {
   background-color: var(--black);

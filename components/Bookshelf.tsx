@@ -15,7 +15,7 @@ export default React.memo(function Bookshelf() {
   );
   const [selectedBook, setSelectedBook] = useState<DocumentData | undefined>();
 
-  console.log(values);
+  console.log("Bookshelf Component Render", values);
   return (
     <main className={styles.mainContainer}>
       {loading ? <div>Loading...</div> : null}
@@ -23,7 +23,17 @@ export default React.memo(function Bookshelf() {
       <div className={styles.displayContainer}>
         <ul>
           {values
-            ? values.map((val) => (
+            ? values.sort((a,b) => {
+              const nameA = a.title.toLowerCase();
+              const nameB = b.title.toLowerCase();
+              if (nameA < nameB) {
+                return -1;
+              } else if (nameA > nameB) {
+                return 1;
+              } else {
+                return 0;
+              }
+            }).map((val) => (
                 <li
                   className={styles.listItem}
                   key={val.id}

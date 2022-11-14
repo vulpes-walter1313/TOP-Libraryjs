@@ -18,7 +18,7 @@ interface AddBookFormInput {
 
 export default function LibraryPage() {
   const {user} = useContext(UserContext);
-  const [showAddBook, setShowAddBook] = useState(true);
+  const [showAddBook, setShowAddBook] = useState(false);
   const {register, handleSubmit, formState: { errors, isSubmitSuccessful }, reset}
     = useForm<AddBookFormInput>({
       defaultValues: {

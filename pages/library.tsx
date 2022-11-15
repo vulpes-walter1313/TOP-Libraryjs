@@ -63,7 +63,7 @@ export default function LibraryPage() {
               <input type="number" {...register("pages", {valueAsNumber: true})}/>
               <label htmlFor='read'>Read</label>
               <input type="checkbox" {...register("read")}/>
-              <div>
+              <div className={styles.formBtnsContainer}>
                 <button type="submit">Add</button>
                 <button type="button" onClick={() => setShowAddBook(!showAddBook)}>Cancel</button>
               </div>

@@ -27,14 +27,35 @@
 .addBookFormContainer form {
   display: flex;
   flex-flow: column;
-  
+  text-align: center;
+  font-size: 1rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   width: min(80vw, 30rem);
   margin: 0 auto;
   background-color: var(--black);
   padding: 1rem;
   color: var(--off-white);
 }
+.addBookFormContainer form label {
+  margin: 1rem 0 .5rem;
+  font-weight: 600;
+}
 .addBookFormContainer form input {
   font-size: 1rem;
   padding: .5rem;
+}
+.addBookFormContainer form div button {
+  background-color: var(--white);
+  border-style: none;
+  padding: .75rem 2.25rem;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+.formBtnsContainer {
+  display: flex;
+  justify-content: space-around;
+}
+/* Checkbox styles */
+.addBookFormContainer form input[type="checkbox"] {
+  height: 28px;
 }

@@ -11,3 +11,6 @@
   --main: #d2d7df;
   --accent-1: #26b5d5;
 }
+body {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+}

@@ -32,7 +32,11 @@
 }
 .selectedContainer {
   background-color: var(--off-white);
-  padding: 1rem;
+  padding: 2rem 3rem;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  height: 20rem;
 }
 .selectedTitle {
   font-size: 1.5rem;
@@ -40,4 +44,11 @@
 }
 .selectedAuthor {
   text-align: center;
+}
+.selectedCheckbox {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  top: 5px;
+  left: 11px;
 }

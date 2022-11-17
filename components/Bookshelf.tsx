@@ -51,22 +51,27 @@ export default React.memo(function Bookshelf() {
         <div className={styles.selectedContainer}>
           {selectedBook ? (
             <>
-              <p className={styles.selectedTitle}>{selectedBook.title}</p>
-              <p className={styles.selectedAuthor}>by {selectedBook.author}</p>
-              <p>Pages: {Intl.NumberFormat('en-US').format(selectedBook.pages)}</p>
-              <label htmlFor="selected-read">Read:</label>
-              <input
-                id="selected-read"
-                type="checkbox"
-                checked={selectedBook.read}
-                onChange={ async (e) => {
-                  selectedBook.read = !selectedBook.read;
-                  await updateDoc(doc(firestore, "users", (user as User).uid, "books", selectedBook.id), {
-                    read: selectedBook.read,
-                    updatedAt: serverTimestamp()
-                  });
-                  console.log("Selected Book Checked input: ", selectedBook.read);
-                }}/>
+              <div>
+                <p className={styles.selectedTitle}>{selectedBook.title}</p>
+                <p className={styles.selectedAuthor}>by {selectedBook.author}</p>
+              </div>
+              <div>
+                <p>Pages: {Intl.NumberFormat('en-US').format(selectedBook.pages)}</p>
+                <label htmlFor="selected-read">Read:</label>
+                <input
+                  id="selected-read"
+                  className={styles.selectedCheckbox}
+                  type="checkbox"
+                  checked={selectedBook.read}
+                  onChange={ async (e) => {
+                    selectedBook.read = !selectedBook.read;
+                    await updateDoc(doc(firestore, "users", (user as User).uid, "books", selectedBook.id), {
+                      read: selectedBook.read,
+                      updatedAt: serverTimestamp()
+                    });
+                    console.log("Selected Book Checked input: ", selectedBook.read);
+                  }}/>
+              </div>
               <button
                 type="button"
                 onClick={async () => {

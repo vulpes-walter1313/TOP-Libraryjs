@@ -1,6 +1,7 @@
 import { signInWithPopup } from "firebase/auth";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { auth, googleAuthProvider } from "../lib/firebase";
 import ErrorMessage from "./ErrorMessage";
@@ -19,13 +20,15 @@ export default function LoginForms() {
   } = useForm<LoginFormInput>();
   const [wantsToRegister, setWantsToRegister] = useState(false);
   const router = useRouter();
+  const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
 
   async function signInWithGoogle() {
     await signInWithPopup(auth, googleAuthProvider);
     router.push("/library");
   }
-  function submitData(data: LoginFormInput) {
-    console.log(data);
+  async function submitData(data: LoginFormInput) {
+    await signInWithEmailAndPassword(data.email, data.password);
+    router.push("/library");
   }
   return (
     <div className={styles.mainContainer}>

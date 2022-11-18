@@ -1,15 +1,21 @@
+import { useRouter } from 'next/router';
 import React from 'react';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import {useForm} from "react-hook-form";
+import { auth } from '../lib/firebase';
 import ErrorMessage from './ErrorMessage';
 import type { LoginFormInput } from './LoginForms';
 import styles from "./LoginForms.module.css";
 
 
 export default function RegisterAccount() {
+  const router = useRouter();
   const {register, handleSubmit, formState: {errors}} = useForm<LoginFormInput>();
-  function submitData(data: LoginFormInput) {
-    console.log(data);
+  async function submitData(data: LoginFormInput) {
+    await createUserWithEmailAndPassword(data.email, data.password);
+    router.push("/library");
   }
+  const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth);
 return (
     <form onSubmit={handleSubmit(submitData)} className={styles.form}>
       <p className={styles.title}>Create an Account:</p>

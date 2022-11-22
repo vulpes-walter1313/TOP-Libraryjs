@@ -1,8 +1,9 @@
 import { signInWithPopup } from "firebase/auth";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { auth, googleAuthProvider } from "../lib/firebase";
 import ErrorMessage from "./ErrorMessage";
 import styles from "./LoginForms.module.css";
@@ -20,23 +21,40 @@ export default function LoginForms() {
   } = useForm<LoginFormInput>();
   const [wantsToRegister, setWantsToRegister] = useState(false);
   const router = useRouter();
-  const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
+  const [loginError, setLoginError] = useState("");
 
   async function signInWithGoogle() {
     await signInWithPopup(auth, googleAuthProvider);
     router.push("/library");
   }
+
   async function submitData(data: LoginFormInput) {
-    await signInWithEmailAndPassword(data.email, data.password);
-    router.push("/library");
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      );
+      if (userCredential) {
+        toast.success("You're logged in!");
+        router.push("/library");
+      }
+    } catch (e: any) {
+      console.log(e);
+      setLoginError(e.message);
+    }
   }
+
   return (
     <div className={styles.mainContainer}>
       <button className={styles.googleBtn} onClick={signInWithGoogle}>
         <img src="/google.png" style={{ width: "40px", height: "40px" }} />
         Login with Google
       </button>
-      <button className={styles.wantToRegisterBtn} onClick={() => setWantsToRegister(!wantsToRegister)}>
+      <button
+        className={styles.wantToRegisterBtn}
+        onClick={() => setWantsToRegister(!wantsToRegister)}
+      >
         {wantsToRegister === false
           ? "Don't Have an Account?"
           : "Already Registered?"}
@@ -74,6 +92,7 @@ export default function LoginForms() {
               <ErrorMessage>The password is too long</ErrorMessage>
             )}
           </div>
+          {loginError ? <p>{loginError}</p> : null}
           <input className={styles.submitBtn} type="submit" />
         </form>
       ) : null}

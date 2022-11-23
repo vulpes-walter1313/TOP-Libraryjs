@@ -1,21 +1,33 @@
 import { useRouter } from 'next/router';
-import React from 'react';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import React, { useState } from 'react';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import {useForm} from "react-hook-form";
 import { auth } from '../lib/firebase';
 import ErrorMessage from './ErrorMessage';
 import type { LoginFormInput } from './LoginForms';
 import styles from "./LoginForms.module.css";
+import toast from 'react-hot-toast';
 
 
 export default function RegisterAccount() {
   const router = useRouter();
   const {register, handleSubmit, formState: {errors}} = useForm<LoginFormInput>();
+  const [createUserError, setCreateUserError] = useState("");
   async function submitData(data: LoginFormInput) {
-    await createUserWithEmailAndPassword(data.email, data.password);
-    router.push("/library");
+    try {
+      let result = await createUserWithEmailAndPassword(auth, data.email, data.password);
+      if (result) {
+        toast.success("User created Successfully");
+        router.push("/library");
+      }       
+    }
+    catch(e: any) {
+      toast.error(`There was an error: ${e.message}`);
+      if (e) {
+        setCreateUserError(e.message);
+      }
+    }
   }
-  const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth);
 return (
     <form onSubmit={handleSubmit(submitData)} className={styles.form}>
       <p className={styles.title}>Create an Account:</p>
@@ -31,6 +43,7 @@ return (
         {errors.password?.type === "minLength" && <ErrorMessage>The password is too small</ErrorMessage>}
         {errors.password?.type === "maxLength" && <ErrorMessage>The password is too long</ErrorMessage>}
       </div>
+      {createUserError ? <p>{createUserError}</p> : null}
       <input className={styles.submitBtn} type="submit"/>
     </form>
   )

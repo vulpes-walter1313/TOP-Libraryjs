@@ -74,6 +74,7 @@ export default React.memo(function Bookshelf() {
               </div>
               <button
                 type="button"
+                className={styles.selectedRemoveBtn}
                 onClick={async () => {
                   if (selectedBook) {
                     await deleteDoc(
@@ -89,7 +90,7 @@ export default React.memo(function Bookshelf() {
                   }
                 }}
               >
-                remove
+                Remove
               </button>
             </>
           ) : (

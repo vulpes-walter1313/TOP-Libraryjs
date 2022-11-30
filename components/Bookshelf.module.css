@@ -57,6 +57,15 @@
   top: 5px;
   left: 11px;
 }
+.selectedRemoveBtn {
+  appearance: none;
+  border-style: none;
+  font-size: 1rem;
+  padding: .5rem 1rem;
+  border-radius: 10px;
+  background-color: var(--black);
+  color: var(--off-white)
+}
 /* Media Quieries */
 @media screen and (min-width: 57rem) {
   .displayContainer {

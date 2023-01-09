@@ -1,0 +1,10 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId}/books/{bookId} {
+      allow read: if request.auth != null && request.auth.uid == userId;
+      allow create: if request.auth != null && request.auth.uid == userId && request.time == request.resource.data.addedAt;
+      allow update: if request.auth != null && request.auth.uid == userId && request.time == request.resource.data.updatedAt;
+    }
+  }
+}

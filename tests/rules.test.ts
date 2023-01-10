@@ -1,15 +1,11 @@
 import { assertFails, assertSucceeds, initializeTestEnvironment, RulesTestEnvironment } from "@firebase/rules-unit-testing";
 import { collection, doc, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
 import { readFileSync } from "node:fs";
-// const { assertFails, assertSucceeds } = require('@firebase/rules-unit-testing');
-// const { setup, teardown } = require('./helpers');
 
 describe('Database rules', () => {
-  // let db;
   let testEnv: RulesTestEnvironment;
 
   beforeAll(async () => {
-    // db = await setup();
     testEnv = await initializeTestEnvironment({
       projectId: "top-library-d5756",
       firestore: {
@@ -21,7 +17,6 @@ describe('Database rules', () => {
   });
 
   afterAll(async () => {
-    // await teardown();
     await testEnv?.clearFirestore();
     await testEnv?.cleanup();
   });
@@ -61,6 +56,29 @@ describe('Database rules', () => {
       updatedAt: serverTimestamp()
     })));
   });
+  
+  test("deny when updating id in authorized document", async ()=> {
+    const john = testEnv.authenticatedContext("john");
+
+    const docRef = doc(collection(john.firestore(), "users", "john", "books"));
+    await setDoc(docRef, {
+      title: "some cool title",
+      author: "some cool author",
+      pages: 123,
+      read: true,
+      addedAt: serverTimestamp(),
+      updatedAt: serverTimestamp(),
+      id: docRef.id 
+    });
+    
+    expect(await assertFails(updateDoc(docRef, {
+      author: "Sheakspear",
+      read: false,
+      id: "someotherid",
+      updatedAt: serverTimestamp()
+    })));
+
+  })
   
   test("deny writing to an unauthorized collection", () => {
 

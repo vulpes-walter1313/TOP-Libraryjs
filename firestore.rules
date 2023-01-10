@@ -2,9 +2,33 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     match /users/{userId}/books/{bookId} {
-      allow read: if request.auth != null && request.auth.uid == userId;
-      allow create: if request.auth != null && request.auth.uid == userId && request.time == request.resource.data.addedAt;
-      allow update: if request.auth != null && request.auth.uid == userId && request.time == request.resource.data.updatedAt;
+      allow read: if isOwner(userId);
+      allow create: if isOwner(userId) && isCreateTimeValid() && isCreationValid();
+      allow update: if isOwner(userId) && isUpdateTimeValid() && isUpdateValid();
     }
+  }
+  function isUpdateValid() {
+    // ensures that the id and addedAt fields are not edited
+    let isIdTheSame = request.resource.data.id == resource.data.id;
+    let isAddedAtSame = request.resource.data.addedAt == resource.data.addedAt;
+    let post = request.resource.data;
+    let hasRequiredFields = request.resource.data.keys().hasAny(['author', 'pages', 'read', 'title']);
+    let isValidContent = post.author is string && post.title is string && post.pages is int && post.updatedAt is timestamp && post.read is bool;
+    return isIdTheSame && isAddedAtSame && hasRequiredFields && isValidContent;
+  }
+  function isCreationValid() {
+    let post = request.resource.data;
+    let hasRequiredFields = request.resource.data.keys().hasAll(['addedAt', 'author', 'id', 'pages', 'read', 'title', 'updatedAt']);
+    let isValidContent = post.addedAt is timestamp && post.author is string && post.id is string && post.pages is int && post.read is bool && post.title is string && post.updatedAt is timestamp;    
+    return hasRequiredFields && isValidContent;
+  }
+  function isCreateTimeValid() {
+   return request.time == request.resource.data.addedAt; 
+  }
+  function isUpdateTimeValid() {
+    return request.time == request.resource.data.updatedAt;
+  }
+  function isOwner(userId) {
+    return request.auth != null && request.auth.uid == userId;
   }
 }

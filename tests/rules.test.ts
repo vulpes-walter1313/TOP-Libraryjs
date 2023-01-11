@@ -17,7 +17,7 @@ describe('Database rules', () => {
   });
 
   afterAll(async () => {
-    // await testEnv?.clearFirestore();
+    await testEnv?.clearFirestore();
     await testEnv?.cleanup();
   });
   
@@ -35,6 +35,17 @@ describe('Database rules', () => {
       id: docRef.id 
     })));
   });
+  
+  test("deny write of an incomplete book document", async () => {
+    const john = testEnv.authenticatedContext("john");
+    
+    const docRef = doc(collection(john.firestore(), "users", "john", "books"));
+    expect(await assertFails(setDoc(docRef, {
+      title: "My Favorite book",
+      author: "some author",
+      id: docRef.id
+    })))
+  })
   
   test("allow updating an authorized doc", async () => {
     const john = testEnv.authenticatedContext("john");
@@ -57,7 +68,7 @@ describe('Database rules', () => {
     })));
   });
   
-  test.only("deny when updating id in authorized document", async ()=> {
+  test("deny when updating id in authorized document", async ()=> {
     const john = testEnv.authenticatedContext("john");
     
     // Setup document before creating an update
